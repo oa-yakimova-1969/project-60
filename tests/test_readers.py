@@ -1,14 +1,14 @@
 from unittest.mock import mock_open, patch
-from src.readers import read_csv_transactions, read_excel_transactions
+
 import pandas as pd
+
+from src.readers import read_csv_transactions, read_excel_transactions
 
 
 @patch(
     "builtins.open",
     new_callable=mock_open,
-    read_data=(
-        "id;state;date;amount;currency_name;currency_code;from;to;description\n1;2;3;4;5;6;7;8;9\n"
-    )
+    read_data=("id;state;date;amount;currency_name;currency_code;from;to;description\n1;2;3;4;5;6;7;8;9\n"),
 )
 def test_read_csv_transactions_correct(mock_file):
     """Тест на корректный csv файл с транзакциями"""
